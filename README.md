@@ -2,7 +2,7 @@
 
 A traditional GomokuAI written in C++ & React
 
-基于传统搜索算法（极大极小值算法 & AlphaBeta剪枝）的五子棋。后端使用C++、前端使用React编写。
+基于传统搜索算法（极大极小值算法 & AlphaBeta剪枝）的五子棋AI。后端使用C++、前端使用React编写。
 
 此为后端项目库。前端项目库：https://github.com/tml104/limi_gomoku_front
 
