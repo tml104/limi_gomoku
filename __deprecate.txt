@@ -1,0 +1,167 @@
+
+	auto __update_00 = [&](int xop, int yop, int mask) {
+		ll before_score, after_score;
+		for (int i = -UPDATE_DIS; i <= UPDATE_DIS; i++)
+		{
+			int xx = x + i * xop;
+			int yy = y + i * yop;
+			if (tmpGameBoard->getWhoPiece(xx, yy) == 2) //none
+			{
+				bool is_find = (nextStepMap[0].find({ xx,yy }) != nextStepMap[0].end());
+				if ((abs(i) <= NEW_NEXT_DIS) || (is_find))
+				{
+					//black
+					auto last_move1 = tmpGameBoard->fakePopPiece(x, y);
+					tmpGameBoard->fakePutPiece(xx, yy, 1);
+
+					before_score = 0;
+					if (is_find)
+						before_score = judgeDragon_A(tmpGameBoard, xx, yy, mask);
+
+					tmpGameBoard->fakePutPiece(x, y, last_move1);
+					after_score = judgeDragon_A(tmpGameBoard, xx, yy, mask);
+					tmpGameBoard->fakePopPiece(xx, yy);
+
+					nextStepMap[0][{xx, yy}] += after_score - before_score * (is_find);
+
+
+					//white
+					auto last_move2 = tmpGameBoard->fakePopPiece(x, y);
+					tmpGameBoard->fakePutPiece(xx, yy, 2);
+
+					before_score = 0;
+					if (is_find)
+						before_score = judgeDragon_A(tmpGameBoard, xx, yy, mask);
+
+					tmpGameBoard->fakePutPiece(x, y, last_move2);
+					after_score = judgeDragon_A(tmpGameBoard, xx, yy, mask);
+					tmpGameBoard->fakePopPiece(xx, yy);
+
+					nextStepMap[1][{xx, yy}] += after_score - before_score * (is_find);
+				}
+
+			}
+
+		}
+	};
+
+	auto __update_1 = [&]() {
+		ll before_score, after_score;
+		for (int i = -UPDATE_DIS; i <= UPDATE_DIS; i++)
+		{
+			int xx = x + i;
+			int yy = y + i;
+			if (tmpGameBoard->getWhoPiece(xx, yy) == 2) //none
+			{
+				bool is_find = (nextStepMap[0].find({ xx,yy }) != nextStepMap[0].end());
+				if ((abs(i) <= NEW_NEXT_DIS) || (is_find))
+				{
+					//black
+					auto last_move1 = tmpGameBoard->fakePopPiece(x, y);
+					tmpGameBoard->fakePutPiece(xx, yy, 1);
+					before_score = judgeDragon_A_1(tmpGameBoard, xx, yy);
+
+					tmpGameBoard->fakePutPiece(x, y, last_move1);
+					after_score = judgeDragon_A_1(tmpGameBoard, xx, yy);
+					tmpGameBoard->fakePopPiece(xx, yy);
+
+					nextStepMap[0][{xx, yy}] += after_score - before_score * (is_find);
+
+
+					//white
+					auto last_move2 = tmpGameBoard->fakePopPiece(x, y);
+					tmpGameBoard->fakePutPiece(xx, yy, 2);
+					before_score = judgeDragon_A_1(tmpGameBoard, xx, yy);
+
+					tmpGameBoard->fakePutPiece(x, y, last_move2);
+					after_score = judgeDragon_A_1(tmpGameBoard, xx, yy);
+					tmpGameBoard->fakePopPiece(xx, yy);
+
+					nextStepMap[1][{xx, yy}] += after_score - before_score * (is_find);
+				}
+
+			}
+
+		}
+	};
+
+	auto __update_2 = [&]() {
+		ll before_score, after_score;
+		for (int i = -UPDATE_DIS; i <= UPDATE_DIS; i++)
+		{
+			int xx = x + i;
+			int yy = y;
+			if (tmpGameBoard->getWhoPiece(xx, yy) == 2) //none
+			{
+				bool is_find = (nextStepMap[0].find({ xx,yy }) != nextStepMap[0].end());
+
+				if ((abs(i) <= NEW_NEXT_DIS) || (is_find))
+				{
+					//black
+					auto last_move1 = tmpGameBoard->fakePopPiece(x, y);
+					tmpGameBoard->fakePutPiece(xx, yy, 1);
+					before_score = judgeDragon_A_2(tmpGameBoard, xx, yy);
+
+					tmpGameBoard->fakePutPiece(x, y, last_move1);
+					after_score = judgeDragon_A_2(tmpGameBoard, xx, yy);
+					tmpGameBoard->fakePopPiece(xx, yy);
+
+					nextStepMap[0][{xx, yy}] += after_score - before_score * (is_find);
+
+
+					//white
+					auto last_move2 = tmpGameBoard->fakePopPiece(x, y);
+					tmpGameBoard->fakePutPiece(xx, yy, 2);
+					before_score = judgeDragon_A_2(tmpGameBoard, xx, yy);
+
+					tmpGameBoard->fakePutPiece(x, y, last_move2);
+					after_score = judgeDragon_A_2(tmpGameBoard, xx, yy);
+					tmpGameBoard->fakePopPiece(xx, yy);
+
+					nextStepMap[1][{xx, yy}] += after_score - before_score * (is_find);
+				}
+
+			}
+
+		}
+	};
+
+	auto __update_3 = [&]() {
+		ll before_score, after_score;
+		for (int i = -UPDATE_DIS; i <= UPDATE_DIS; i++)
+		{
+			int xx = x - i;
+			int yy = y + i;
+			if (tmpGameBoard->getWhoPiece(xx, yy) == 2) //none
+			{
+				bool is_find = (nextStepMap[0].find({ xx,yy }) != nextStepMap[0].end());
+				if ((abs(i) <= NEW_NEXT_DIS) || (is_find))
+				{
+					//black
+					auto last_move1 = tmpGameBoard->fakePopPiece(x, y);
+					tmpGameBoard->fakePutPiece(xx, yy, 1);
+					before_score = judgeDragon_A_3(tmpGameBoard, xx, yy);
+
+					tmpGameBoard->fakePutPiece(x, y, last_move1);
+					after_score = judgeDragon_A_3(tmpGameBoard, xx, yy);
+					tmpGameBoard->fakePopPiece(xx, yy);
+
+					nextStepMap[0][{xx, yy}] += after_score - before_score * (is_find);
+
+
+					//white
+					auto last_move2 = tmpGameBoard->fakePopPiece(x, y);
+					tmpGameBoard->fakePutPiece(xx, yy, 2);
+					before_score = judgeDragon_A_3(tmpGameBoard, xx, yy);
+
+					tmpGameBoard->fakePutPiece(x, y, last_move2);
+					after_score = judgeDragon_A_3(tmpGameBoard, xx, yy);
+					tmpGameBoard->fakePopPiece(xx, yy);
+
+					nextStepMap[1][{xx, yy}] += after_score - before_score * (is_find);
+				}
+
+			}
+
+		}
+	};
